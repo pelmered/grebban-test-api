@@ -18,4 +18,12 @@ class ProductCollectionResource extends ResourceCollection
     {
         return parent::toArray($request);
     }
+
+    public function paginationInformation($request, $paginated, $default): array
+    {
+        return [
+            'page' => $paginated['current_page'],
+            'totalPages' => $paginated['last_page'],
+        ];
+    }
 }
