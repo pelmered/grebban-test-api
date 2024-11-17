@@ -19,7 +19,7 @@ class ProductCollectionResource extends ResourceCollection
         return parent::toArray($request);
     }
 
-    public function paginationInformation($request, $paginated, $default): array
+    public function paginationInformation(Request $request, array $paginated, array $default): array
     {
         return [
             'page' => $paginated['current_page'],

@@ -19,9 +19,9 @@ class AttributeTransformer implements Transformer
         return array_merge($colors, $categories);
     }
 
-    public function getColors($colorsString): array
+    public function getColors(string $colorsString): array
     {
-        return array_map(function ($color) {
+        return array_map(static function (string $color) {
 
             $color = Color::where('code', $color)->first();
 
@@ -32,9 +32,9 @@ class AttributeTransformer implements Transformer
         }, explode(',', $colorsString));
     }
 
-    public function getCategories($categoryString): array
+    public function getCategories(string $categoryString): array
     {
-        return array_map(function ($singleCategoryString) {
+        return array_map(static function (string $singleCategoryString) {
 
             preg_match_all('/\d+/', $singleCategoryString, $matches);
 

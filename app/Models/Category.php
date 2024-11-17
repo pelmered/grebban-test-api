@@ -26,7 +26,7 @@ class Category extends Model
 
             $categories = $attributes->where('code', 'cat')->first();
 
-            return array_map(static function ($category) {
+            return array_map(static function (array $category) {
 
                 preg_match_all('/\d+/', $category['code'], $matches);
 
