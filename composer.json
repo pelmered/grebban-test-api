@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "ext-pdo_sqlite": "*",
         "calebporzio/sushi": "^2.5",
         "laravel/framework": "^11.9",
         "spatie/laravel-data": "^4.11"

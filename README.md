@@ -25,3 +25,32 @@ Packages used:
 - [Laravel Pint](https://github.com/laravel/pint)
 - [Laravel Pest](https://github.com/pestphp/pest)
 
+## Requirements
+
+- PHP 8.3
+- No database needed for this project, but the Sushi package uses a SQLite database under the hood and needs the [`pdo-sqlite` PHP extension](https://www.php.net/manual/en/ref.pdo-sqlite.php).
+
+## Setup
+
+1. `cp .env.example .env`
+2. `composer install`
+3. `php artisan serve`
+4. `open http://127.0.0.1:8001/product`
+
+## Code checks and Testing
+
+### Code check
+This runs Laravel Pint, Laravel Pest and Pest Type Coverage.
+```bash
+composer check
+```
+
+### Run tests
+Runs test suite
+```bash
+composer test
+```
+Runs test suite with text coverage summary (requires a code coverage driver like xDebug or pcov)
+```bash
+composer coverage
+```
