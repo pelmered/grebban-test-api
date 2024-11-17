@@ -14,12 +14,4 @@ class ProductData extends Data
         #[WithTransformer(AttributeTransformer::class)]
         public array $attributes,
     ) {}
-
-    # TODO /  WIP
-    protected function parseAttributes(array $attributes): array
-    {
-        return array_map(function ($attribute) {
-            return new AttributeData($attribute['name'], $attribute['value']);
-        }, $attributes);
-    }
 }
