@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\FetchAllProductDataAction;
 use App\DataObjects\ProductData;
+use App\Http\Resources\ProductCollectionResource;
 use Illuminate\Http\Request;
 
 class ShowProductsController extends Controller
@@ -12,6 +13,6 @@ class ShowProductsController extends Controller
     {
         $products = $fetchAllProductDataAction->execute()['products'];
 
-        return  response()->json($products);
+        return new ProductCollectionResource($products);
     }
 }
