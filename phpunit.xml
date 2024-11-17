@@ -20,6 +20,7 @@
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_URL" value="https://grebban.test"/>
+        <env name="APP_KEY" value="base64:iuFHkS07dE8ZaAR4Nf9hBKhSkNrktxxLheQHty8ePvU="/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_STORE" value="array"/>
