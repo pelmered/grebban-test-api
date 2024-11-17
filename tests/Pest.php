@@ -25,7 +25,6 @@ pest()->extend(Tests\TestCase::class)
 |
 */
 
-
 /*
 |--------------------------------------------------------------------------
 | Functions
@@ -36,4 +35,3 @@ pest()->extend(Tests\TestCase::class)
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-

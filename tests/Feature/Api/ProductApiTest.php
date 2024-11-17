@@ -47,5 +47,31 @@ it('limits results by page size', function ($perPage, $resultCount) {
 
 it('returns the correct page', function ($page) {
 
+    // Get all products so we have something to compare with.
+    $response = $this->getJson('/product?page=1&page_size=10');
+    $response->assertStatus(200);
+    $products = $response->json('products');
+
+    $response = $this->getJson('/product?page='.$page.'&page_size=2');
+
+    $response
+        ->assertStatus(200)
+        ->assertJson(function (AssertableJson $json) use ($page, $products) {
+            $json->where('page', $page)
+                ->where('totalPages', 5)
+                ->has('products', 2)
+                ->first(function (AssertableJson $json) use ($page, $products) {
+
+                    // Get the product that should be first on this page.
+                    $product = $products[($page - 1) * 2];
+
+                    $json->first(function (AssertableJson $json) use ($product) {
+                        $json->whereAll($product);
+                    })->etc();
+                });
+        });
 })->with([
+    [1],
+    [2],
+    [4],
 ]);
