@@ -53,8 +53,14 @@
         ],
         "check": [
             "vendor/bin/pint",
-            "vendor/bin/pest --type-coverage",
+            "vendor/bin/pest",
+            "vendor/bin/pest --type-coverage"
+        ],
+        "test": [
             "vendor/bin/pest"
+        ],
+        "coverage": [
+            "vendor/bin/pest --coverage --only-summary-for-coverage-text"
         ]
     },
     "extra": {
