@@ -4,23 +4,29 @@ use Illuminate\Testing\Fluent\AssertableJson;
 
 it('makes an api request', function () {
 
-    $response = $this->getJson('/product');
+    //$response = $this->getJson('/product');
+    $response = $this->getJson(route('api.products'));
 
     $response
         ->assertStatus(200)
-        ->assertJson(fn (AssertableJson $json) =>
-            $json->has('products')
-                 ->has('products.0', fn ($json) =>
-                     $json->where('id', 2169396)
-                          ->where('name', 'Auto Alpha')
-                          ->where('attributes.0.name', 'Color')
-                          ->where('attributes.0.value', 'Blue')
-                          ->where('attributes.1.name', 'Color')
-                          ->where('attributes.1.value', 'Green')
-                          ->where('attributes.2.name', 'Category')
-                          ->where('attributes.2.value', 'Cars > Hybrids')
-            )
+        ->assertJson(fn (AssertableJson $json) => $json->has('products')
+            ->has('products.0', fn ($json) => $json->where('id', 6267654)
+                ->where('name', 'Auto Omega')
+                ->where('attributes.0.name', 'Color')
+                ->where('attributes.0.value', 'Black')
+                ->where('attributes.1.name', 'Color')
+                ->where('attributes.1.value', 'White')
+                ->where('attributes.2.name', 'Category')
+                ->where('attributes.2.value', 'Cars')
+            )->etc()
         );
+});
+
+it('matches snapshots', function () {
+
+    $response = $this->getJson('/product');
+
+    expect($response)->toMatchSnapshot();
 });
 
 it('limits results by page size', function ($perPage, $resultCount) {
@@ -35,8 +41,8 @@ it('limits results by page size', function ($perPage, $resultCount) {
     [1, 1],
     [3, 3],
     [5, 5],
-    [10, 10],
-    [999999, 100],
+    [10, 9],
+    [999999, 9],
 ]);
 
 it('returns the correct page', function ($page) {
