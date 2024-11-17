@@ -11,11 +11,14 @@ class FetchAllProductDataAction
     )
     {}
 
-    public function execute()
+    public function execute(): array
     {
         $attributes = $this->fetchAttributesAction->execute();
         $products = $this->fetchProductsAction->execute();
 
-        // WIP
+        return [
+            'attributes' => $attributes,
+            'products'   => $products,
+        ];
     }
 }
