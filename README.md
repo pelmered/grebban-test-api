@@ -27,6 +27,7 @@ Packages used:
 
 ## Requirements
 
+Same as [Laravel 11](https://laravel.com/docs/11.x/deployment#server-requirements). Except: 
 - PHP 8.3
 - No database needed for this project, but the Sushi package uses a SQLite database under the hood and needs the [`pdo-sqlite` PHP extension](https://www.php.net/manual/en/ref.pdo-sqlite.php).
 
@@ -43,6 +44,10 @@ Packages used:
 This runs Laravel Pint, Laravel Pest and Pest Type Coverage.
 ```bash
 composer check
+```
+PHPStan check on level 8.
+```bash
+composer phpstan
 ```
 
 ### Run tests

@@ -9,16 +9,19 @@
         "ext-pdo_sqlite": "*",
         "calebporzio/sushi": "^2.5",
         "laravel/framework": "^11.9",
+        "php-static-analysis/attributes": "^0.3.1",
         "spatie/laravel-data": "^4.11"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.2",
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.13",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
         "pestphp/pest": "^3.5",
         "pestphp/pest-plugin-laravel": "^3.0",
-        "pestphp/pest-plugin-type-coverage": "^3.2"
+        "pestphp/pest-plugin-type-coverage": "^3.2",
+        "php-static-analysis/phpstan-extension": "^0.3.1"
     },
     "autoload": {
         "psr-4": {
@@ -62,6 +65,13 @@
         ],
         "coverage": [
             "vendor/bin/pest --coverage --only-summary-for-coverage-text"
+        ],
+        "phpstan": [
+            "vendor/bin/phpstan"
+        ],
+        "ide-helper": [
+            "php artisan ide-helper:meta",
+            "php artisan ide-helper:models -M"
         ]
     },
     "extra": {

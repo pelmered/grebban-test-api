@@ -9,13 +9,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ShowProductsController extends Controller
 {
-    public function __invoke(Request $request, FetchProductsAction $fetchProductsAction)
+    public function __invoke(Request $request, FetchProductsAction $fetchProductsAction): ProductCollectionResource
     {
         $products = $fetchProductsAction->execute();
 
         $totalCount = $products->count();
-        $pageSize = (int) ($request->get('page_size') ?? 5);
-        $currentPage = (int) ($request->get('page') ?? 1);
+        $pageSize = (int) ($request->input('page_size') ?? 5);
+        $currentPage = (int) ($request->input('page') ?? 1);
 
         $products = $products->slice(($currentPage - 1) * $pageSize, $pageSize);
 
