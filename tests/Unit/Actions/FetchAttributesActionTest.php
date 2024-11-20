@@ -3,7 +3,7 @@
 use App\Actions\FetchAttributesAction;
 use App\DataObjects\AttributeData;
 
-it('executes action and returns products', function () {
+it('executes action and returns attributes', static function () {
     $attributes = app(FetchAttributesAction::class)->execute();
 
     expect($attributes)->toBeCollection()

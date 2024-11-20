@@ -2,24 +2,45 @@
 
 use Illuminate\Testing\Fluent\AssertableJson;
 
-it('makes an api request', function () {
+it('returns correct JSON data', function () {
 
-    //$response = $this->getJson('/product');
     $response = $this->getJson(route('api.products'));
 
     $response
         ->assertStatus(200)
         ->assertJson(fn (AssertableJson $json) => $json->has('products')
-            ->has('products.0', fn ($json) => $json->where('id', 6267654)
-                ->where('name', 'Auto Omega')
-                ->where('attributes.0.name', 'Color')
-                ->where('attributes.0.value', 'Black')
-                ->where('attributes.1.name', 'Color')
-                ->where('attributes.1.value', 'White')
-                ->where('attributes.2.name', 'Category')
-                ->where('attributes.2.value', 'Cars')
+            ->has('products.0', fn ($json) =>
+                $json->where('id', 6267654)
+                    ->where('name', 'Auto Omega')
+                    ->where('attributes.0.name', 'Color')
+                    ->where('attributes.0.value', 'Black')
+                    ->where('attributes.1.name', 'Color')
+                    ->where('attributes.1.value', 'White')
+                    ->where('attributes.2.name', 'Category')
+                    ->where('attributes.2.value', 'Cars')
             )->etc()
         );
+
+});
+
+
+it('returns correct JSON structure and types', function () {
+    $response = $this->getJson(route('api.products'));
+
+    $response->assertJson(function (AssertableJson $json) {
+        $json->has('products', 5);
+        $json->has('products', function (AssertableJson $json) {
+            $json->each(function (AssertableJson $json) {
+                $json->whereAllType([
+                    'id'         => 'integer',
+                    'name'       => 'string',
+                    'attributes' => 'array',
+                ]);
+            });
+        });
+        $json->whereType('page', 'integer');
+        $json->whereType('totalPages', 'integer');
+    });
 });
 
 it('matches snapshots', function () {

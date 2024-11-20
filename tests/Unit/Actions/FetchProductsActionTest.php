@@ -3,7 +3,7 @@
 use App\Actions\FetchProductsAction;
 use App\DataObjects\ProductData;
 
-it('executes action and returns products', function () {
+it('executes action and returns products', static function () {
     $products = app(FetchProductsAction::class)->execute();
 
     expect($products)->toBeCollection()
